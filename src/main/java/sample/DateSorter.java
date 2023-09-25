@@ -27,8 +27,8 @@ public class DateSorter {
     private static final Predicate<LocalDate> MONTH_NAME_CONTAINS_R = date -> monthNameContainsLetter(date, 'r');
 
     // 2 subsets by default (according to the task):
-    // first contains dates with month containing 'r' letter and is ascending
-    // second contains all the other dates in descending order
+    // First contains dates with month containing 'r' letter and is ascending
+    // Second contains all the other dates in descending order
     private List<SubsetSortRule> subsetSortRules = List.of(
             new SubsetSortRule(MONTH_NAME_CONTAINS_R, Comparator.naturalOrder()),
             new SubsetSortRule(MONTH_NAME_CONTAINS_R.negate(), Comparator.reverseOrder())
@@ -47,6 +47,11 @@ public class DateSorter {
         this.subsetSortRules = subsetSortRules;
     }
 
+    /**
+     * Sort dates according to the subsetSortRules
+     * @param unsortedDates - an unsorted list of dates
+     * @return the collection of dates now sorted as per the spec
+     */
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
         Stream<Stream<LocalDate>> sortedSubsets = extractSortedSubsets(unsortedDates);
         return concatSubsets(sortedSubsets);
