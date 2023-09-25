@@ -1,8 +1,16 @@
 ## Palanquin test task
 
-The goal was to implement `DateSorter#sortDates(List<LocalDate>)` method
+The goal was to implement `DateSorter#sortDates(List<LocalDate>)` method:
 ```
 /**
+ * Marking will be based upon producing a readable, well engineered solution rather than factors
+ * such as speed of processing or other performance-based optimizations, which are less
+ * important.
+ *
+ * Implement in single class. Don't chane constructor and signature method.
+ */
+public class DateSorter {
+    /**
      * The implementation of this method should sort dates.
      * The output should be in the following order:
      * Dates with an 'r' in the month,
@@ -21,6 +29,7 @@ The goal was to implement `DateSorter#sortDates(List<LocalDate>)` method
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
         ...
     }
+}
 ```
 
 Using provided example I also implemented one test method to make sure the implementation 
