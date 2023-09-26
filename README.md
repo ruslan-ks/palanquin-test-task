@@ -32,6 +32,22 @@ public class DateSorter {
 }
 ```
 
-Using provided example I also implemented one test method to make sure the implementation 
+Using provided example I also implemented a few test methods to make sure the implementation 
 works as expected.
 
+### Implementation details
+
+Implemented `DateSorter` is configured using `List<SubsetRule>`.
+Each `SubsetRule` object defines how to sort specific subset of dates. After being sorted, the subsets
+are placed in the order of `SubsetRule` occurrence.
+
+`SubsetSortRule` has two fields:
+```
+Predicate<LocalDate> belongsToSubset;
+Comparator<LocalDate> subsetSortComparator;
+```
+* Predicate `belongsToSubet` defines whether an object should be treated as a part of this subset.
+* Comparator `subsetSortComparator` is used to sort items of the subset.
+
+Date objects that don't belong to any subset are handled by `FALLBACK_RULE` special case object
+which is the last one in the list.
