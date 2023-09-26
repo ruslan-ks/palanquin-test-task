@@ -74,7 +74,7 @@ public class DateSorter {
     private List<List<LocalDate>> extractSortedSubsets(List<LocalDate> dates) {
         return subsetRules.stream()
                 .map(subsetRule -> extractAndSortSubset(dates, subsetRule))
-                .collect(Collectors.toCollection(ArrayList::new));
+                .toList();
     }
 
     private List<LocalDate> extractAndSortSubset(List<LocalDate> dates, SubsetRule subsetRule) {
