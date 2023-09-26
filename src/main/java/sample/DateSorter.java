@@ -10,16 +10,16 @@ import java.util.stream.Stream;
 
 public class DateSorter {
     public static class SubsetSortRule {
-        private final Predicate<LocalDate> subsetDetectionPredicate;
+        private final Predicate<LocalDate> belongsToSubset;
         private final Comparator<LocalDate> subsetSortComparator;
 
         /**
-         * @param subsetDetectionPredicate defines whether an item belongs to this subset
+         * @param belongsToSubset defines whether an item belongs to this subset
          * @param subsetSortComparator Comparator used to sort an items inside the subset
          */
-        public SubsetSortRule(Predicate<LocalDate> subsetDetectionPredicate,
+        public SubsetSortRule(Predicate<LocalDate> belongsToSubset,
                               Comparator<LocalDate> subsetSortComparator) {
-            this.subsetDetectionPredicate = subsetDetectionPredicate;
+            this.belongsToSubset = belongsToSubset;
             this.subsetSortComparator = subsetSortComparator;
         }
     }
@@ -64,7 +64,7 @@ public class DateSorter {
 
     private Stream<LocalDate> extractAndSortSubset(List<LocalDate> dates, SubsetSortRule subsetSortRule) {
         return dates.stream()
-                .filter(subsetSortRule.subsetDetectionPredicate)
+                .filter(subsetSortRule.belongsToSubset)
                 .sorted(subsetSortRule.subsetSortComparator);
     }
 
